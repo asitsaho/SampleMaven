@@ -7,7 +7,7 @@ pipeline {
     stages { 
         stage ("SCM Checkin-1") {
             steps {
-              git branch: 'master', url:'https://github.com/rjraka/SampleMaven'
+              git branch: 'master', url:'https://github.com/asitsaho/SampleMaven'
                  }
         }
         stage ("maven build") {
@@ -25,7 +25,7 @@ pipeline {
         }
         stage ("Run the Container") {
             steps {
-                sh "docker run -d -p 90:8080 --name cont01 rkscloud/tomcat-b1"
+                sh "docker run -d -p 90:8080 --name cont01 asitsaho/tomcat-b1"
             }
         }
         stage ("Check the webpage") {
@@ -36,7 +36,7 @@ pipeline {
         }
         stage ("Push to Docker HUB") {
             steps {
-                sh "docker push rkscloud/tomcat-b1:latest"
+                sh "docker push asitsaho/tomcat-b1:latest"
             }
         }
         stage ("Cleanup the previous Docker Image and container") {
@@ -45,7 +45,7 @@ pipeline {
             }
             steps {
                 sh "docker rm cont01 -f"
-                sh "docker image rmi rkscloud/tomcat-b1 -f"
+                sh "docker image rmi asitsaho/tomcat-b1 -f"
                 sh "mvn clean package"
             }
         }
