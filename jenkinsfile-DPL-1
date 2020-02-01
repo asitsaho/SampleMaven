@@ -20,7 +20,7 @@ pipeline {
                     message 'Can we proceed with Image build'
             }
             steps {
-                sh "docker build . -t rkscloud/tomcat-b1"
+                sh "docker build . -t asitsaho/tomcat-b1"
             }
         }
         stage ("Run the Container") {
